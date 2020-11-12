@@ -1,4 +1,4 @@
-package com.order.service.events;
+package com.payment.demo.events;
 
 public interface EventsConstants {
     public static String CREATE_PAYMENT = "CREATE_PAYMENT";

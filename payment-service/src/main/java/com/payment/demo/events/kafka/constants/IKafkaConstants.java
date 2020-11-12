@@ -1,4 +1,4 @@
-package com.payment.demo.kafka.constants;
+package com.order.service.events.kafka.constants;
 
 public interface IKafkaConstants {
 	public static String KAFKA_BROKERS = "localhost:9092";
