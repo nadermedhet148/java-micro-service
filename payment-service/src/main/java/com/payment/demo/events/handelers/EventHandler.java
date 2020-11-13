@@ -1,6 +1,6 @@
 package com.payment.demo.events.handelers;
 
-import com.order.service.events.kafka.consumer.ConsumerCreator;
+import com.payment.demo.events.kafka.consumer.ConsumerCreator;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

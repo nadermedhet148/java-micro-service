@@ -35,7 +35,7 @@ public class OrderServiceApplication {
 					JSONObject json = new JSONObject(record.value());
 					eventHandler.handle(record.key() , json);
 				});
-//				consumer.commitAsync();
+				consumer.commitAsync();
 			}
 		});
 	}

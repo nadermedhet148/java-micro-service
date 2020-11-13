@@ -1,8 +1,8 @@
 package com.payment.demo.controllers;
 
 import com.payment.demo.controllers.requests.PayRequest;
-import com.payment.demo.events.publishers.FailedOrder;
-import com.payment.demo.events.publishers.SuccessOrder;
+import com.payment.demo.events.publishers.FailedOrderEvent;
+import com.payment.demo.events.publishers.SuccessOrderEvent;
 import com.payment.demo.models.Payment;
 import com.payment.demo.repository.IPaymentRepository;
 import lombok.AllArgsConstructor;
@@ -27,15 +27,13 @@ public class PaymentController {
             PaymentRepository;
 
 
-    @Autowired
-    SuccessOrder successOrder;
 
-    @Autowired
-    FailedOrder failedOrder;
 
 
     @PostMapping(value = "")
     public Payment createOrder(@RequestBody PayRequest body){
+        SuccessOrderEvent successOrder = new SuccessOrderEvent();
+        FailedOrderEvent failedOrderEvent = new FailedOrderEvent();
 
         Optional<Payment> payment = PaymentRepository.findById(body.getPaymentId());
         if(!payment.isPresent()) {
@@ -48,7 +46,7 @@ public class PaymentController {
         }
         if(!body.getSuccess()){
             presentPayment.setStatus("FAILED");
-            failedOrder.publishFailedOrder(presentPayment);
+            failedOrderEvent.publishFailedOrder(presentPayment);
         }
 
         return presentPayment;
