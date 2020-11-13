@@ -1,7 +1,7 @@
 package com.order.service.controllers;
 
 import com.order.service.controllers.requests.CreateOrderRequest;
-import com.order.service.events.publishers.CreatePayment;
+import com.order.service.events.publishers.CreatePaymentPublisher;
 import com.order.service.models.Order;
 import com.order.service.repository.IOrderRepository;
 import lombok.AllArgsConstructor;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/orders")
@@ -21,7 +20,7 @@ public class OrderController {
     IOrderRepository OrderRepository;
 
     @Autowired
-    CreatePayment createPayment;
+    CreatePaymentPublisher createPaymentPublisher;
 
     @PostMapping(value = "")
     public Order createOrder(@RequestBody CreateOrderRequest body){
@@ -30,7 +29,7 @@ public class OrderController {
         order.setName(body.getName());
         order.setStatus("PENDING");
         this.OrderRepository.save(order);
-        createPayment.publishCreateOrderPayment(order);
+        createPaymentPublisher.publishCreateOrderPayment(order);
         return order;
     }
 

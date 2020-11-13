@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.json.JSONObject;
 
-import java.util.List;
 
 @Table(name = "Student")
 @NoArgsConstructor
@@ -23,6 +22,9 @@ public class Order {
     @GeneratedValue
     @Column(name = "id")
     private int id ;
+
+    @Column(name = "paymentId")
+    private int paymentId ;
 
     @Column(name = "name")
     private String name;

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.ExecutionException;
 
 @Component
-public class CreatePayment {
+public class CreatePaymentPublisher {
 
     public void publishCreateOrderPayment(Order order){
 

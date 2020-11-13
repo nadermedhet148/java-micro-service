@@ -36,7 +36,9 @@ public class Payment {
     public String toJson (){
         JSONObject payload = new JSONObject();
         payload.put("amount",this.getAmount());
-        payload.put("id",this.getId());
+        payload.put("orderId",this.orderId);
+        payload.put("amount",this.status);
+        payload.put("paymentId",this.getId());
         return payload.toString();
     }
 
