@@ -38,3 +38,8 @@ The system consists in:
 
 ## Runinng
 
+### create docker images : 
+1- `cd /order-service` -> `docker build . -t java-order-service`
+2- `cd /payment-service` -> `docker build . -t java-payment-service`
+3- `docker-compose -f docker-compose.yml up -d`
+
